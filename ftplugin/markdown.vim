@@ -18,7 +18,7 @@ let b:undo_ftplugin .= "|setl cms< com< fo<"
 
 let s:jumpList = []
 
-function MarkdownJumpRef()
+fun! MarkdownJumpRef()
 	let line = getline('.')
 	let curcol = virtcol('.')
 	let start = curcol - 1
@@ -65,9 +65,9 @@ function MarkdownJumpRef()
 	let npos[2] = c + 2
 	call setpos('.', npos)
 	return 0
-endfunction
+endfun
 
-function MarkdownJumpBack()
+fun! MarkdownJumpBack()
 	let l = len(s:jumpList)
 	if l <= 0
 		return
@@ -76,7 +76,7 @@ function MarkdownJumpBack()
 	let s:jumpList = s:jumpList[:l - 2]
 
 	call setpos('.', pos)
-endfunction
+endfun
 
 map <C-]> :call MarkdownJumpRef()<CR>
 map <C-T> :call MarkdownJumpBack()<CR>
